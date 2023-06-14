@@ -1,0 +1,195 @@
+<html>
+    <head>
+        <title>SSIS-Nihaya</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.19/dist/css/uikit.min.css" />
+        <!-- UIkit JS -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.19/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.19/dist/js/uikit-icons.min.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="/eel.js"></script>
+        <script defer src="./script.js"></script>
+    </head>
+    <body>
+        <nav class="uk-navbar-container fixed top-0">
+            <div class="uk-container flex">
+                <div uk-navbar>
+        
+                    <div class="uk-navbar-left ">
+                        <a class="uk-navbar-item uk-logo hidden lg:flex" href="#" aria-label="Back to Home">Simple Student Information System</a>
+        
+                        
+                        <div class="uk-navbar-item">
+                                <form class="uk-search uk-search-default">
+                                    <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+                                    <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" id="searchinput">
+                                </form>
+                            <button class="uk-button uk-button-default" id="searchbutton" uk-toggle="target: #modal-close-outside" type="button">Search</button>
+                            <div id="modal-close-outside" uk-modal>
+                                <div class="uk-modal-dialog uk-modal-body">
+                                    <button class="uk-modal-close-outside" type="button" uk-close></button>
+                                    <div id="searchresult">No Students Found ☹️</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-navbar-item">
+                            <div class="uk-text-thin ">Search by: </div>
+                            <button class="uk-button uk-button-default uk-text-bold uk-text-primary" type="button" id="searchby">ID</button>
+                            <div class="uk-card uk-card-body uk-card-default" uk-drop="mode: click">
+                                <div class="uk-margin">
+                                    <div uk-form-custom="target: > * > span:first-child">
+                                        <select aria-label="Custom controls" onchange="IdOrName()" id="idorname">
+                                            <option value="id">ID</option>
+                                            <option value="name">Name</option>
+                                        </select>
+                                        <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                                            <span></span>
+                                            <span uk-icon="icon: chevron-down"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="uk-button uk-button-default" href="#modal-center" uk-toggle>Add Student</a>
+                            <div id="modal-center" class="uk-flex-top" uk-modal>
+                                <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+                            
+                                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                                    <form class="uk-grid-small" uk-grid>
+                                        <div class="uk-width-1-1">
+                                            <input class="uk-input" type="text" placeholder="LRN" aria-label="100" id="addlrninput" required>
+                                        </div>
+                                        <div class="uk-width-1-2@s">
+                                            <input class="uk-input" type="text" placeholder="firstname" aria-label="50" id="addfnameinput" required>
+                                        </div>
+                                        <div class="uk-width-1-4@s">
+                                            <input class="uk-input" type="text" placeholder="middlename" aria-label="25" id="addmnameinput" required>
+                                        </div>
+                                        <div class="uk-width-1-4@s">
+                                            <input class="uk-input" type="text" placeholder="lastname" aria-label="25" id="addlnameinput" required>
+                                        </div>
+                                        <div class="uk-width-1-2@s">
+                                            <div class="uk-margin">
+                                                <label for="">Gender:</label>
+                                                <div uk-form-custom="target: > * > span:first-child">
+                                                    <select aria-label="Custom controls" id="addsexinput">
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                                    <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                                                        <span></span>
+                                                        <span uk-icon="icon: chevron-down"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="uk-margin">
+                                                <label for="">
+                                                    Year Level:
+                                                </label>
+                                                <div uk-form-custom="target: > * > span:first-child">
+                                                    <select aria-label="Custom controls" id="addyearinput">
+                                                        <option value="1st">1st</option>
+                                                        <option value="2nd">2nd</option>
+                                                        <option value="3rd">3rd</option>
+                                                        <option value="4th">4th</option>
+                                                    </select>
+                                                    <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                                                        <span></span>
+                                                        <span uk-icon="icon: chevron-down"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-2@s">
+                                            <input class="uk-input" type="text" placeholder="course" aria-label="50" id="addcourseinput" required>
+                                        </div>
+                                        <div class="uk-width-1-1">
+                                            <input class="uk-input" type="email" placeholder="email" aria-label="100" id="addemailinput" required>
+                                        </div>
+                                        <div class="uk-width-1-1">
+                                            <button type="submit" class="uk-button uk-button-default uk-input uk-background-primary" aria-label="100" onclick="AddStudent()">Add Student</button>
+                                        </div>
+
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                </div>
+            </div>
+        </nav>
+        <table class="uk-table uk-table-divider mt-44 lg:mt-20">
+            <thead >
+                <tr>
+                    <th>#</th>
+                    <th>Fullname</th>
+                    <th>Sex</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="table-body" class="">
+                
+            </tbody>
+        </table>
+        <div id="modal-centerG" class="uk-flex-top" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+                <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                <form class="uk-grid-small" uk-grid>
+                                        <div class="uk-width-1-1">
+                                            <input class="uk-input" type="text" placeholder="LRN" aria-label="100" id="editlrninput" readonly>
+                                        </div>
+                                        <div class="uk-width-1-2@s">
+                                            <input class="uk-input" type="text" placeholder="firstname" aria-label="50" id="editfnameinput" required>
+                                        </div>
+                                        <div class="uk-width-1-4@s">
+                                            <input class="uk-input" type="text" placeholder="middlename" aria-label="25" id="editmnameinput" required>
+                                        </div>
+                                        <div class="uk-width-1-4@s">
+                                            <input class="uk-input" type="text" placeholder="lastname" aria-label="25" id="editlnameinput" required>
+                                        </div>
+                                        <div class="uk-width-1-2@s">
+                                            <div class="uk-margin">
+                                                <label for="">Gender:</label>
+                                                    <select id="editsexselect" >
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                            </div>
+                                            <div class="uk-margin">
+                                                <label for="">
+                                                    Year Level:
+                                                </label>
+                                                    <select id="edityearinput">
+                                                        <option value="1st">1st</option>
+                                                        <option value="2nd">2nd</option>
+                                                        <option value="3rd">3rd</option>
+                                                        <option value="4th">4th</option>
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-2@s">
+                                            <input class="uk-input" type="text" placeholder="course" aria-label="50" id="editcourseinput" required>
+                                        </div>
+                                        <div class="uk-width-1-1">
+                                            <input class="uk-input" type="email" placeholder="email" aria-label="100" id="editemailinput" required>
+                                        </div>
+                                        <div class="uk-width-1-1">
+                                            <div  class="uk-button uk-button-default  uk-background-primary" aria-label="100" onclick="SaveEditStud()">Save</div>
+                                        </div>
+
+                                    </form>
+
+            </div>
+        </div>
+        
+        
+    </body>
+</html>
